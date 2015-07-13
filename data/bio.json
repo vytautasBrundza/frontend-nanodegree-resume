@@ -1,0 +1,18 @@
+{
+  "name": "Vytautas Brundza",
+  "role": "Junior Web Developer",
+  "contacts": {
+    "mobile": "078784935",
+    "email": "vytautas.brundza@cohaesus.co.uk",
+    "github": "https://github.com/vytautasBrundza",
+    "twitter": "",
+    "location": "London"
+  },
+  "welcomeMessage": "Hello World",
+  "skills": [
+    "C#",
+    "Photoshop",
+    "Skateboarding"
+  ],
+  "biopic": "http://cohaesus.co.uk/wp-content/uploads/2015/03/Vytautas-0231.jpeg"
+}

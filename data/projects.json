@@ -1,0 +1,10 @@
+{
+  "projects": [{
+    "title": "Cohaesus",
+    "dates": "Junior Web Developer",
+    "description": "London",
+    "images":["https://lh4.ggpht.com/M1XTibfCgpi5pgjSDb7kXDh21N8fpn-8evzQVAX-qGFhSyArDmSuCAv1pjVp4jbAt_g=h900","https://lh4.ggpht.com/M1XTibfCgpi5pgjSDb7kXDh21N8fpn-8evzQVAX-qGFhSyArDmSuCAv1pjVp4jbAt_g=h900","http://colourfulrebel.com/en/wp-content/uploads/2015/06/Cute-Kittens-1-Wallpaper-HD.jpg"]
+  }
+  ],
+  "display": "function"
+}

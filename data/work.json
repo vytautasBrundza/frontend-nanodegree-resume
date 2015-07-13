@@ -1,0 +1,11 @@
+{
+  "jobs": [{
+    "employer": "Cohaesus",
+    "title": "Junior Web Developer",
+    "location": "London",
+    "dates":"31062013 - now",
+    "description": "Working as junior web developer"
+  }
+  ],
+  "display": "function"
+}
