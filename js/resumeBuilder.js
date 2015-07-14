@@ -246,7 +246,7 @@ error: function (data) {
   HideEducation();
 }
 });
-// INTERACTIVE MAP
 
+// INTERACTIVE MAP
 $("#map-div").append(googleMap);
 

@@ -21,7 +21,7 @@ var HTMLemail = '<li class="flex-item"><span class="orange-text">email</span><sp
 var HTMLtwitter = '<li class="flex-item"><span class="orange-text">twitter</span><span class="white-text">%data%</span></li>';
 var HTMLgithub = '<li class="flex-item"><span class="orange-text">github</span><span class="white-text">%data%</span></li>';
 var HTMLblog = '<li class="flex-item"><span class="orange-text">blog</span><span class="white-text">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text">%data%</span></li>';
+var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</span><span class="white-text map-location">%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
 var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
@@ -33,7 +33,7 @@ var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
 var HTMLworkTitle = ' - %data%</a>';
 var HTMLworkDates = '<div class="date-text">%data%</div>';
-var HTMLworkLocation = '<div class="location-text">%data%</div>';
+var HTMLworkLocation = '<div class="location-text map-location">%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
 
 var HTMLprojectStart = '<div class="project-entry"></div>';
@@ -46,7 +46,7 @@ var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
 var HTMLschoolDegree = ' -- %data%</a>';
 var HTMLschoolDates = '<div class="date-text">%data%</div>';
-var HTMLschoolLocation = '<div class="location-text">%data%</div>';
+var HTMLschoolLocation = '<div class="location-text map-location">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
 var HTMLonlineClasses = '<h3>Online Classes</h3>';
@@ -103,15 +103,15 @@ Start here! initializeMap() is called when page is loaded.
 */
 function initializeMap() {
 
+  console.log("Initializing map");
+
   var locations;
 
   var mapOptions = {
     disableDefaultUI: true
   };
 
-
   map = new google.maps.Map(document.querySelector('#map-div'), mapOptions);
-
 
   /*
   locationFinder() returns an array of every location string from the JSONs
@@ -121,22 +121,31 @@ function initializeMap() {
 
     // initializes an empty array
     var locations = [];
-
+    /*
     // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    if(bio)locations.push(bio.contacts.location);
 
     // iterates through school locations and appends each location to
     // the locations array
-    for (var school in education.schools) {
+    if(education.schools)for (var school in education.schools) {
       locations.push(education.schools[school].location);
     }
 
     // iterates through work locations and appends each location to
     // the locations array
-    for (var job in work.jobs) {
+    if(work.jobs)for (var job in work.jobs) {
       locations.push(work.jobs[job].location);
+    }*/
+    var HTMLlocs = document.getElementsByClassName("map-location");
+    console.log("Found "+HTMLlocs.length+" locations in the page:");
+    for (i = 0; i < HTMLlocs.length; i++) {
+      locations.push(HTMLlocs[i].innerHTML);
+      console.log(i+") "+HTMLlocs[i].innerHTML);
     }
 
+    //filter the array (http://stackoverflow.com/a/14821032)
+    locations = locations.filter (function (v, i, a) { return a.indexOf (v) == i });
+console.log("distinct locations "+locations.length);
     return locations;
   }
 
@@ -233,10 +242,12 @@ Uncomment the code below when you're ready to implement a Google Map!
 
 // Calls the initializeMap() function when the page loads
 //window.addEventListener('load', initializeMap);
+window.addEventListener('load', setTimeout(function(){ initializeMap(); }, 1000));
+
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+map.fitBounds(mapBounds);
+});
