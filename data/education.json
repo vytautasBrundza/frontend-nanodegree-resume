@@ -5,20 +5,21 @@
     "location": "Vilnius",
     "degree": "bachelor",
     "majors":["major1","major2","major3"],
-    "dates": "31062013",
+    "dates": "31-06-2013",
     "url":"http://www.vgtu.lt/index.php?lang=2"
   },{
     "name": "ELATT",
     "location": "London",
     "degree": "NVQ 2",
     "majors":["major1","major2","major3"],
-    "dates": "31062014",
+    "dates": "31-06-2014",
     "url":"http://www.elatt.org.uk/"
   }
   ],
   "onlineCourses": [{
     "title": "front end development",
     "school": "Udacity",
+    "dates": "",
     "url":"https://www.udacity.com"
   }
   ],

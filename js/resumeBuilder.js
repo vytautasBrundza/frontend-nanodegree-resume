@@ -175,3 +175,75 @@ error: function (data) {
   HideProjects();
 }
 });
+
+// EDUCATION
+function FillEducation(JSONeducation)
+{
+	console.log("replacing education data");
+	// schools
+	if(JSONeducation.schools){
+		for (i = 0; i < JSONeducation.schools.length; i++) {
+			// create single school HTML
+			var HTMLschool=HTMLschoolStart;
+			// create container for all single school details
+			var schoolDetails;
+			// fill work HTML with specific school data
+    		schoolDetails=HTMLschoolName.replace("%data%",JSONeducation.schools[i].name)
+    		+HTMLschoolDegree.replace("%data%",JSONeducation.schools[i].degree)
+    		+HTMLschoolDates.replace("%data%",JSONeducation.schools[i].dates)
+    		+HTMLschoolLocation.replace("%data%",JSONeducation.schools[i].location);
+    		if(JSONeducation.schools[i].majors)
+    		{
+    			for (j = 0; j < JSONeducation.schools[i].majors.length; j++) {
+    				schoolDetails=schoolDetails+HTMLschoolMajor.replace("%data%",JSONeducation.schools[i].majors[j]);
+    			}
+    		}
+    		// add all details to the container
+    		HTMLschool=HTMLschool.insertAt(29,schoolDetails);
+    		// append school to the page
+    		$("#education").append(HTMLschool);
+		}
+	}
+	else{console.log("schools data not valid");}
+	// online courses
+	if(JSONeducation.onlineCourses){
+		for (i = 0; i < JSONeducation.onlineCourses.length; i++) {
+			// create single school HTML
+			var HTMLcourse=HTMLschoolStart;
+			// create container for all single school details
+			var courseDetails;
+			// fill work HTML with specific school data
+    		courseDetails=HTMLonlineTitle.replace("%data%",JSONeducation.onlineCourses[i].title)
+    		+HTMLonlineSchool.replace("%data%",JSONeducation.onlineCourses[i].school)
+    		+HTMLonlineDates.replace("%data%",JSONeducation.onlineCourses[i].dates)
+    		+HTMLonlineURL.replace("%data%",JSONeducation.onlineCourses[i].url);
+    		// add all details to the container
+    		HTMLcourse=HTMLonlineClasses+HTMLcourse.insertAt(29,courseDetails);
+    		// append school to the page
+
+    		$("#education").append(HTMLcourse);
+		}
+	}
+	else{console.log("online courses data not valid");}
+}
+
+function HideEducation()
+{
+	if(document.getElementsByClassName('education-entry').length === 0) {
+      document.getElementById('education').style.display = 'none';
+      console.log("education hidden");
+    }
+}
+
+$.ajax({
+url: "data/education.json",
+success: function (data) {
+  console.log("successfully loaded education JSON file");
+  FillEducation(JSON.parse(data));
+  HideEducation();
+},
+error: function (data) {
+  console.log("could not load education JSON file");
+  HideEducation();
+}
+});
