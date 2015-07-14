@@ -17,26 +17,24 @@ function FillBio(JSONbio)
 	$("#header").prepend(HTMLheaderName);
 	}
 	// CONTACTS LIST
-	if(JSONbio.contacts.location){
-		HTMLlocation=HTMLlocation.replace("%data%",JSONbio.contacts.location);
-		$("#topContacts").prepend(HTMLlocation);
-	}
-	if(JSONbio.contacts.twitter){
-		HTMLtwitter=HTMLemail.replace("%data%",JSONbio.contacts.twitter);
-		$("#topContacts").prepend(HTMLtwitter);
-	}
-	if(JSONbio.contacts.github){
-		HTMLgithub=HTMLgithub.replace("%data%",JSONbio.contacts.github);
-		$("#topContacts").prepend(HTMLgithub);
+	var contactsList;
+	if(JSONbio.contacts.mobile){
+		contactsList=HTMLmobile.replace("%data%",JSONbio.contacts.mobile);
 	}
 	if(JSONbio.contacts.email){
-		HTMLemail=HTMLemail.replace("%data%",JSONbio.contacts.email);
-		$("#topContacts").prepend(HTMLemail);
+		contactsList=contactsList+HTMLemail.replace("%data%",JSONbio.contacts.email);
 	}
-	if(JSONbio.contacts.mobile){
-		HTMLmobile=HTMLmobile.replace("%data%",JSONbio.contacts.mobile);
-		$("#topContacts").prepend(HTMLmobile);
+	if(JSONbio.contacts.github){
+		contactsList=contactsList+HTMLgithub.replace("%data%",JSONbio.contacts.github);
 	}
+	if(JSONbio.contacts.twitter){
+		contactsList=contactsList+HTMLemail.replace("%data%",JSONbio.contacts.twitter);
+	}
+	if(JSONbio.contacts.location){
+		contactsList=contactsList+HTMLlocation.replace("%data%",JSONbio.contacts.location);
+	}
+	$("#topContacts").append(contactsList);
+	$("#footerContacts").append(contactsList);
 	// IMAGE ROW
 	if(JSONbio.biopic){
 		HTMLbioPic=HTMLbioPic.replace("%data%",JSONbio.biopic);
@@ -76,7 +74,8 @@ function HideBio()
     }
     if(document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('topContacts').style.display = 'none';
-      console.log("top contacts hidden");
+      document.getElementById('footerContacts').style.display = 'none';
+      console.log("contacts hidden");
     }
 }
 
@@ -247,3 +246,7 @@ error: function (data) {
   HideEducation();
 }
 });
+// INTERACTIVE MAP
+
+$("#map-div").append(googleMap);
+
