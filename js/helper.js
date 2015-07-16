@@ -111,7 +111,7 @@ function initializeMap() {
     disableDefaultUI: true
   };
 
-  map = new google.maps.Map(document.querySelector('#map-div'), mapOptions);
+  map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
   /*
   locationFinder() returns an array of every location string from the JSONs
