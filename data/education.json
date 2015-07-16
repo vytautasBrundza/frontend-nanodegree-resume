@@ -4,24 +4,25 @@
     "name": "VGTU",
     "location": "Vilnius",
     "degree": "bachelor",
-    "majors":["major1","major2","major3"],
+    "majors": ["major1"],
     "dates": "2013",
-    "url":"http://www.vgtu.lt/index.php?lang=2"
+    "url": "http://www.vgtu.lt/index.php?lang=2"
   },{
     "name": "ELATT",
     "location": "London",
     "degree": "NVQ 2",
-    "majors":["major1","major2","major3"],
+    "majors":["major1","major2"],
     "dates": "2014",
-    "url":"http://www.elatt.org.uk/"
+    "url": "http://www.elatt.org.uk/"
   }
   ],
   "onlineCourses": [{
     "title": "front end development",
     "school": "Udacity",
     "dates": "",
-    "url":"https://www.udacity.com"
+    "url": "https://www.udacity.com"
   }
   ],
-  "display": "function"
+  "fillData": "function(){console.log('replacing education data');if(this.schools){for (i = 0; i < this.schools.length; i++) {var schoolDetails=HTMLschoolName.replace('%data%',this.schools[i].name)+HTMLschoolDegree.replace('%data%',this.schools[i].degree)+HTMLschoolDates.replace('%data%',this.schools[i].dates)+HTMLschoolLocation.replace('%data%',this.schools[i].location);if(this.schools[i].majors){for (j = 0; j < this.schools[i].majors.length; j++) {schoolDetails=schoolDetails+HTMLschoolMajor.replace('%data%',this.schools[i].majors[j]);}}$('#education').append(HTMLschoolStart.insertAt(29,schoolDetails));}}else{console.log('schools data not valid');}if(this.onlineCourses){for (i = 0; i < this.onlineCourses.length; i++){var courseDetails=HTMLonlineTitle.replace('%data%',this.onlineCourses[i].title)+HTMLonlineSchool.replace('%data%',this.onlineCourses[i].school)+HTMLonlineDates.replace('%data%',this.onlineCourses[i].dates)+HTMLonlineURL.replace('%data%',this.onlineCourses[i].url);$('#education').append(HTMLonlineClasses+HTMLschoolStart.insertAt(29,courseDetails));}}else{console.log('online courses data not valid');}}",
+  "hideSections": "function(){if(document.getElementsByClassName('education-entry').length === 0) {document.getElementById('education').style.display = 'none';console.log('education hidden');}}"
 }

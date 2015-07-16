@@ -14,5 +14,7 @@
     "Photoshop",
     "Skateboarding"
   ],
-  "biopic": "http://cohaesus.co.uk/wp-content/uploads/2015/03/Vytautas-0231.jpeg"
+  "biopic": "http://cohaesus.co.uk/wp-content/uploads/2015/03/Vytautas-0231.jpeg",
+  "fillData": "function(){console.log('replacing bio data');if(this.role){$('#header').prepend(HTMLheaderRole.replace('%data%',this.role));}if(this.name){$('#header').prepend(HTMLheaderName.replace('%data%',this.name));}var contactsList;if(this.contacts.mobile){contactsList=HTMLmobile.replace('%data%',this.contacts.mobile);}if(this.contacts.email){contactsList=contactsList+HTMLemail.replace('%data%',this.contacts.email);}if(this.contacts.github){contactsList=contactsList+HTMLgithub.replace('%data%',this.contacts.github);}if(this.contacts.twitter){contactsList=contactsList+HTMLemail.replace('%data%',this.contacts.twitter);}if(this.contacts.location){contactsList=contactsList+HTMLlocation.replace('%data%',this.contacts.location);}$('#topContacts').append(contactsList);$('#footerContacts').append(contactsList);if(this.biopic){$('#header').append(HTMLbioPic.replace('%data%',this.biopic));}if(this.welcomeMessage){$('#header').append(HTMLwelcomeMsg.replace('%data%',this.welcomeMessage));}if(this.skills){$('#header').append(HTMLskillsStart);for (i = 0; i < this.skills.length; i++) {$('#header').append(HTMLskills.replace('%data%',this.skills[i]));}}}",
+  "hideSections": "function(){if(document.getElementsByTagName('h1').length === 0){document.getElementById('header').style.display = 'none';console.log('header hidden');}if(document.getElementsByClassName('flex-item').length === 0) {document.getElementById('topContacts').style.display = 'none';document.getElementById('footerContacts').style.display = 'none';console.log('contacts hidden');}}"
 }

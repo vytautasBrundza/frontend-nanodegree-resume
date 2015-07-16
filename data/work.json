@@ -3,9 +3,10 @@
     "employer": "Cohaesus",
     "title": "Junior Web Developer",
     "location": "London",
-    "dates":"31-06-2013 - now",
+    "dates": "31-06-2013 - now",
     "description": "Working as junior web developer"
   }
   ],
-  "display": "function"
+  "fillData": "function(){console.log('replacing work data');if(this.jobs){for (i = 0; i < this.jobs.length; i++){var workDetails=HTMLworkEmployer.replace('%data%',this.jobs[i].employer)+HTMLworkTitle.replace('%data%',this.jobs[i].title)+HTMLworkDates.replace('%data%',this.jobs[i].dates)+HTMLworkLocation.replace('%data%',this.jobs[i].location)+HTMLworkDescription.replace('%data%',this.jobs[i].description);$('#workExperience').append(HTMLworkStart.insertAt(24,workDetails));}}else{console.log('work data not valid');}}",
+  "hideSections": "function(){if(document.getElementsByClassName('work-entry').length === 0) {document.getElementById('workExperience').style.display = 'none';console.log('work hidden');}}"
 }

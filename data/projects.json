@@ -3,8 +3,9 @@
     "title": "Cohaesus",
     "dates": "2015 - 2016",
     "description": "A very cute kittens project",
-    "images":["https://lh4.ggpht.com/M1XTibfCgpi5pgjSDb7kXDh21N8fpn-8evzQVAX-qGFhSyArDmSuCAv1pjVp4jbAt_g=h900","https://lh4.ggpht.com/M1XTibfCgpi5pgjSDb7kXDh21N8fpn-8evzQVAX-qGFhSyArDmSuCAv1pjVp4jbAt_g=h900","http://colourfulrebel.com/en/wp-content/uploads/2015/06/Cute-Kittens-1-Wallpaper-HD.jpg"]
+    "images": ["https://lh4.ggpht.com/M1XTibfCgpi5pgjSDb7kXDh21N8fpn-8evzQVAX-qGFhSyArDmSuCAv1pjVp4jbAt_g=h900","https://lh4.ggpht.com/M1XTibfCgpi5pgjSDb7kXDh21N8fpn-8evzQVAX-qGFhSyArDmSuCAv1pjVp4jbAt_g=h900","http://colourfulrebel.com/en/wp-content/uploads/2015/06/Cute-Kittens-1-Wallpaper-HD.jpg"]
   }
   ],
-  "display": "function"
+  "fillData": "function(){console.log('replacing project data');if(this.projects){for (i = 0; i < this.projects.length; i++) {var HTMLproject=HTMLprojectStart;var projectDetails;projectDetails=HTMLprojectTitle.replace('%data%',this.projects[i].title)+HTMLprojectDates.replace('%data%',this.projects[i].dates)+HTMLprojectDescription.replace('%data%',this.projects[i].description);if(this.projects[i].images){for (j = 0; j < this.projects[i].images.length; j++) {projectDetails=projectDetails+HTMLprojectImage.replace('%data%',this.projects[i].images[j]);}}HTMLproject=HTMLproject.insertAt(27,projectDetails);$('#projects').append(HTMLproject);}}else{console.log('project data not valid');}}",
+  "hideSections": "function(){if(document.getElementsByClassName('project-entry').length === 0) {document.getElementById('projects').style.display = 'none';console.log('projects hidden');}}"
 }
