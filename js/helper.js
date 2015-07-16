@@ -85,7 +85,7 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+  logClicks(loc.clientX,loc.clientY);
 });
 
 
@@ -120,7 +120,7 @@ function initializeMap() {
   function locationFinder() {
 
     // initializes an empty array
-    var locations = [];
+    var loc = [];
     /*
     // adds the single location property from bio to the locations array
     if(bio)locations.push(bio.contacts.location);
@@ -139,14 +139,13 @@ function initializeMap() {
     var HTMLlocs = document.getElementsByClassName("map-location");
     console.log("Found "+HTMLlocs.length+" locations in the page:");
     for (i = 0; i < HTMLlocs.length; i++) {
-      locations.push(HTMLlocs[i].innerHTML);
+      loc.push(HTMLlocs[i].innerHTML);
       console.log(i+") "+HTMLlocs[i].innerHTML);
     }
 
     //filter the array (http://stackoverflow.com/a/14821032)
-    locations = locations.filter (function (v, i, a) { return a.indexOf (v) == i });
-console.log("distinct locations "+locations.length);
-    return locations;
+    return loc.filter (function (v, i, a) { return a.indexOf (v) == i });
+console.log("distinct locations "+locations.length);;
   }
 
   /*
@@ -178,7 +177,8 @@ console.log("distinct locations "+locations.length);
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+
+      infoWindow.open(map,marker);
     });
 
     // this is where the pin actually gets added to the map.
