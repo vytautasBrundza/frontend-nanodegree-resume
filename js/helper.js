@@ -251,3 +251,8 @@ window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
 map.fitBounds(mapBounds);
 });
+
+// Helper function (http://stackoverflow.com/questions/4364881/inserting-string-at-position-x-of-another-string)
+String.prototype.insertAt=function(index, string) {
+  return this.substr(0, index) + string + this.substr(index);
+}

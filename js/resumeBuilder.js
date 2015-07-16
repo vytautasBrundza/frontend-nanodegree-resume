@@ -1,20 +1,13 @@
-// Helper function (http://stackoverflow.com/questions/4364881/inserting-string-at-position-x-of-another-string)
-String.prototype.insertAt=function(index, string) {
-  return this.substr(0, index) + string + this.substr(index);
-}
-
 // BIO
 function FillBio(JSONbio)
 {
 	console.log("replacing bio data");
 	// FIRST LINE: NAME AND ROLE
 	if(JSONbio.role){
-		HTMLheaderRole=HTMLheaderRole.replace("%data%",JSONbio.role);
-		$("#header").prepend(HTMLheaderRole);
+		$("#header").prepend(HTMLheaderRole.replace("%data%",JSONbio.role));
 	}
 	if(JSONbio.name){
-		HTMLheaderName=HTMLheaderName.replace("%data%",JSONbio.name);
-	$("#header").prepend(HTMLheaderName);
+		$("#header").prepend(HTMLheaderName.replace("%data%",JSONbio.name));
 	}
 	// CONTACTS LIST
 	var contactsList;
@@ -37,18 +30,15 @@ function FillBio(JSONbio)
 	$("#footerContacts").append(contactsList);
 	// IMAGE ROW
 	if(JSONbio.biopic){
-		HTMLbioPic=HTMLbioPic.replace("%data%",JSONbio.biopic);
-	$("#header").append(HTMLbioPic);
+		$("#header").append(HTMLbioPic.replace("%data%",JSONbio.biopic));
 	}
 	if(JSONbio.welcomeMessage){
-		HTMLwelcomeMsg=HTMLwelcomeMsg.replace("%data%",JSONbio.welcomeMessage);
-	$("#header").append(HTMLwelcomeMsg);
+		$("#header").append(HTMLwelcomeMsg.replace("%data%",JSONbio.welcomeMessage));
 	}
 	if(JSONbio.skills){
 		$("#header").append(HTMLskillsStart);
 		for (i = 0; i < JSONbio.skills.length; i++) {
-    		var HTMLskill=HTMLskills.replace("%data%",JSONbio.skills[i]);
-    		$("#header").append(HTMLskill);
+    		$("#header").append(HTMLskills.replace("%data%",JSONbio.skills[i]));
 		}
 	}
 }
@@ -85,20 +75,14 @@ function FillWork(JSONwork)
 	console.log("replacing work data");
 	if(JSONwork.jobs){
 		for (i = 0; i < JSONwork.jobs.length; i++) {
-			// create single work HTML
-			var HTMLwork=HTMLworkStart;
-			// create container for all single work details
-			var workDetails;
-			// fill work HTML with specific work data
-    		workDetails=HTMLworkEmployer.replace("%data%",JSONwork.jobs[i].employer)
+			// create container for all single work details and fill with specific work data
+    		var workDetails=HTMLworkEmployer.replace("%data%",JSONwork.jobs[i].employer)
     		+HTMLworkTitle.replace("%data%",JSONwork.jobs[i].title)
     		+HTMLworkDates.replace("%data%",JSONwork.jobs[i].dates)
     		+HTMLworkLocation.replace("%data%",JSONwork.jobs[i].location)
     		+HTMLworkDescription.replace("%data%",JSONwork.jobs[i].description);
-    		// add all details to the container
-    		HTMLwork=HTMLwork.insertAt(24,workDetails);
-    		// append job to the page
-    		$("#workExperience").append(HTMLwork);
+    		// add all details to the container and append job to the page
+    		$("#workExperience").append(HTMLworkStart.insertAt(24,workDetails));
 		}
 	}
 	else{console.log("work data not valid");}
@@ -182,12 +166,8 @@ function FillEducation(JSONeducation)
 	// schools
 	if(JSONeducation.schools){
 		for (i = 0; i < JSONeducation.schools.length; i++) {
-			// create single school HTML
-			var HTMLschool=HTMLschoolStart;
-			// create container for all single school details
-			var schoolDetails;
-			// fill work HTML with specific school data
-    		schoolDetails=HTMLschoolName.replace("%data%",JSONeducation.schools[i].name)
+			// create container for all single school details and fill with specific school data
+    		var schoolDetails=HTMLschoolName.replace("%data%",JSONeducation.schools[i].name)
     		+HTMLschoolDegree.replace("%data%",JSONeducation.schools[i].degree)
     		+HTMLschoolDates.replace("%data%",JSONeducation.schools[i].dates)
     		+HTMLschoolLocation.replace("%data%",JSONeducation.schools[i].location);
@@ -197,30 +177,21 @@ function FillEducation(JSONeducation)
     				schoolDetails=schoolDetails+HTMLschoolMajor.replace("%data%",JSONeducation.schools[i].majors[j]);
     			}
     		}
-    		// add all details to the container
-    		HTMLschool=HTMLschool.insertAt(29,schoolDetails);
-    		// append school to the page
-    		$("#education").append(HTMLschool);
+    		// add all details to the container and append school to the page
+    		$("#education").append(HTMLschoolStart.insertAt(29,schoolDetails));
 		}
 	}
 	else{console.log("schools data not valid");}
 	// online courses
 	if(JSONeducation.onlineCourses){
 		for (i = 0; i < JSONeducation.onlineCourses.length; i++) {
-			// create single school HTML
-			var HTMLcourse=HTMLschoolStart;
-			// create container for all single school details
-			var courseDetails;
-			// fill work HTML with specific school data
-    		courseDetails=HTMLonlineTitle.replace("%data%",JSONeducation.onlineCourses[i].title)
+			// create container for all single school details and fill with specific school data
+    		var courseDetails=HTMLonlineTitle.replace("%data%",JSONeducation.onlineCourses[i].title)
     		+HTMLonlineSchool.replace("%data%",JSONeducation.onlineCourses[i].school)
     		+HTMLonlineDates.replace("%data%",JSONeducation.onlineCourses[i].dates)
     		+HTMLonlineURL.replace("%data%",JSONeducation.onlineCourses[i].url);
-    		// add all details to the container
-    		HTMLcourse=HTMLonlineClasses+HTMLcourse.insertAt(29,courseDetails);
-    		// append school to the page
-
-    		$("#education").append(HTMLcourse);
+    		// add all details to the container and append school to the page
+    		$("#education").append(HTMLonlineClasses+HTMLschoolStart.insertAt(29,courseDetails));
 		}
 	}
 	else{console.log("online courses data not valid");}
