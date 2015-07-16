@@ -145,7 +145,7 @@ function initializeMap() {
 
     //filter the array (http://stackoverflow.com/a/14821032)
     return loc.filter (function (v, i, a) { return a.indexOf (v) == i });
-console.log("distinct locations "+locations.length);;
+    console.log("distinct locations "+locations.length);
   }
 
   /*
@@ -177,7 +177,6 @@ console.log("distinct locations "+locations.length);;
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-
       infoWindow.open(map,marker);
     });
 
@@ -212,7 +211,6 @@ console.log("distinct locations "+locations.length);;
 
     // Iterates through the array of locations, creates a search object for each location
     for (var place in locations) {
-
       // the search request object
       var request = {
         query: locations[place]
@@ -249,7 +247,7 @@ window.addEventListener('load', setTimeout(function(){ initializeMap(); }, 1000)
 // and adjust map bounds
 window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-map.fitBounds(mapBounds);
+  map.fitBounds(mapBounds);
 });
 
 // Helper function (http://stackoverflow.com/questions/4364881/inserting-string-at-position-x-of-another-string)
