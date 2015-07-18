@@ -1,6 +1,6 @@
 function createObjectFromJSON(file)
 {
-	$.ajax({
+	/*$.ajax({
 		url: file,
 		success: function (data) {
 			console.log('successfully loaded '+file);
@@ -13,7 +13,19 @@ function createObjectFromJSON(file)
 		error: function (data) {
 	  		console.log('could not load '+file);
 		}
-	});
+	});*/
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function(){
+  	if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+	    var obj=JSON.parse(xmlhttp.responseText);
+		obj.FillData=new Function("return ("+obj.fillData+")")();
+		obj.HideSections=new Function("return ("+obj.hideSections+")")();
+		obj.FillData();
+		obj.HideSections();
+	  }
+	};
+	xmlhttp.open("GET",file,true);
+	xmlhttp.send();
 }
 
 var bio=createObjectFromJSON('data/bio.json');
